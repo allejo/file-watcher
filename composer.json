@@ -1,19 +1,19 @@
 {
-    "name": "koala-framework/file-watcher",
+    "name": "stakx/file-watcher",
     "description": "Library for watching for file system changes",
     "homepage": "http://www.koala-framework.org/",
     "license": "BSD-2-Clause",
     "type": "library",
     "require": {
-        "symfony/process": "~2.6",
-        "symfony/event-dispatcher": "~2.6",
-        "symfony/finder": "~2.6",
+        "symfony/process": "^2.6|^3.0",
+        "symfony/event-dispatcher": "^2.6|^3.0",
+        "symfony/finder": "^2.6|^3.0",
         "psr/log": "~1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.5.*",
         "phpunit/php-invoker": "*",
-        "symfony/filesystem": "~2.6"
+        "symfony/filesystem": "^2.6|^3.0"
     },
     "autoload": {
         "psr-0": {
