@@ -6,6 +6,8 @@ class Watcher
 {
     /**
      * Creates instance of best watcher backend for your system.
+     *
+     * @return Backend\BackendAbstract
      */
     public static function create($paths)
     {

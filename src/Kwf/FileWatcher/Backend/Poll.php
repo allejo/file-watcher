@@ -49,15 +49,21 @@ class Poll extends BackendAbstract
 
     private function _findFiles()
     {
-        $finder = new Finder();
-        $finder->files();
-        foreach ($this->_excludePatterns as $excludePattern) {
-            $finder->notName($excludePattern);
+        if (null === $this->_iterator) {
+            $finder = new Finder();
+            $finder->files();
+            foreach ($this->_excludePatterns as $excludePattern) {
+                $finder->notName($excludePattern);
+            }
+            foreach ($this->_paths as $p) {
+                $finder->in($p);
+            }
+            if ($this->_followLinks) $finder->followLinks();
         }
-        foreach ($this->_paths as $p) {
-            $finder->in($p);
+        else {
+            $finder = $this->_iterator;
         }
-        if ($this->_followLinks) $finder->followLinks();
+
         $files = array();
         foreach ($finder as $f) {
             $files[$f->getRealpath()] = array(
@@ -68,6 +74,7 @@ class Poll extends BackendAbstract
 
             );
         }
+
         return $files;
     }
 

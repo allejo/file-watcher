@@ -32,14 +32,18 @@ class Inotify extends BackendAbstract
 
         $this->_fd = inotify_init();
 
-        $finder = new Finder();
-        $finder->directories();
-        foreach ($this->_excludePatterns as $excludePattern) {
-            $finder->notName($excludePattern);
-        }
+        if (null === $this->_iterator) {
+            $finder = new Finder();
+            $finder->directories();
+            foreach ($this->_excludePatterns as $excludePattern) {
+                $finder->notName($excludePattern);
+            }
 
-        foreach ($paths as $p) {
-            $finder->in($p);
+            foreach ($paths as $p) {
+                $finder->in($p);
+            }
+        } else {
+            $finder = $this->_iterator;
         }
 
         $this->_watches = array();

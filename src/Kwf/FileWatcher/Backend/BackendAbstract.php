@@ -15,6 +15,7 @@ abstract class BackendAbstract
     protected $_excludePatterns = array();
     protected $_eventDispatcher;
     protected $_logger;
+    protected $_iterator;
     protected $_queueSizeLimit = false;
     protected $_followLinks = false;
 
@@ -84,6 +85,11 @@ abstract class BackendAbstract
     {
         $this->_followLinks = $v;
         return $this;
+    }
+
+    public function setIterator($iterator)
+    {
+        $this->_iterator = $iterator;
     }
 
     protected function _dispatchEvent($name, $e)
