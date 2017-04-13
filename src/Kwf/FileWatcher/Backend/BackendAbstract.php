@@ -90,6 +90,7 @@ abstract class BackendAbstract
     public function setIterator($iterator)
     {
         $this->_iterator = $iterator;
+        return $this;
     }
 
     protected function _dispatchEvent($name, $e)
