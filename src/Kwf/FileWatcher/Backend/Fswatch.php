@@ -48,7 +48,9 @@ class Fswatch extends ChildProcessAbstract
 
     protected function _getEventFromLine($line)
     {
-        if (!preg_match('#^(.*) ([^ ]*?)(Created|Removed|Renamed|Updated)(,.+)?,(IsFile|IsDir)$#', trim($line), $m)) {
+        // We don't do anything for the following events: PlatformSpecific, OwnerModified, AttributeModified
+        // but we still want to match them so they don't get logged as "unknown events"
+        if (!preg_match('#^(.*) ([^ ]*?)(Created|Removed|Renamed|Updated|PlatformSpecific|OwnerModified|AttributeModified)(,.+)?,(IsFile|IsDir)$#', trim($line), $m)) {
             $this->_logger->error("unknown event: $line");
             return;
         }
