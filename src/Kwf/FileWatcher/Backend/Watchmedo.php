@@ -31,7 +31,7 @@ class Watchmedo extends ChildProcessAbstract
             $paths = LinksHelper::followLinks($paths, $this->_excludePatterns);
         }
 
-        $cmd .= implode(' ', $paths);
+        $cmd .= '"' . implode('","', $paths) . '"';
         if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
             //disble output bufferering
             $cmd = "PYTHONUNBUFFERED=1 $cmd";

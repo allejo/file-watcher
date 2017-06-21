@@ -42,7 +42,7 @@ class Fswatch extends ChildProcessAbstract
             $cmd .= "--follow-links ";
         }
 
-        $cmd .= implode(' ', $paths);
+        $cmd .= '"' . implode('","', $paths) . '"';
         return $cmd;
     }
 

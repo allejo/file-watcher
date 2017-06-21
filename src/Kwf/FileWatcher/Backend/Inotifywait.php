@@ -46,7 +46,7 @@ class Inotifywait extends ChildProcessAbstract
             $paths = LinksHelper::followLinks($paths, $this->_excludePatterns);
         }
 
-        $cmd .= implode(' ', $paths);
+        $cmd .= '"' . implode('","', $paths) . '"';
         return $cmd;
     }
 
